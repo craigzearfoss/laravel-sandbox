@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 @section('content')
     <div class="container">
         <div class="row">
@@ -7,6 +7,8 @@
                 <p>This awesome blog has many articles, click the button below to see them</p>
                 <br>
                 <a href="/blog" class="btn btn-outline-primary">Show Blog</a>
+                <br>
+                <a href="/login" class="btn btn-outline-primary mt-4">Login</a>
             </div>
         </div>
     </div>

@@ -13,20 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/', '\App\Http\Controllers\Controller@welcome');
+
+/*
+Route::get('/admin', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('admin');
+*/
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth', 'as' =>'admin.'], function () {
+    Route::get('/', '\App\Http\Controllers\Admin\IndexController@index')->name('dashboard');
+
+    Route::get('/blog', '\App\Http\Controllers\Admin\BlogPostController@index')->name('blog.index');
+    Route::get('/blog/create', '\App\Http\Controllers\Admin\BlogPostController@create')->name('blog.create');
+    Route::post('/blog/create', '\App\Http\Controllers\Admin\BlogPostController@store')->name('blog.store');
+    Route::get('/blog/{blogPost}', '\App\Http\Controllers\Admin\BlogPostController@show')->name('blog.show');
+    Route::get('/blog/{blogPost}/edit', '\App\Http\Controllers\Admin\BlogPostController@edit')->name('blog.edit');
+    Route::put('/blog/{blogPost}/edit', '\App\Http\Controllers\Admin\BlogPostController@update')->name('blog.update');
+    Route::delete('/blog/{blogPost}', '\App\Http\Controllers\Admin\BlogPostController@destroy')->name('blog.destroy');
+
+    Route::get('/user', '\App\Http\Controllers\Admin\UserController@index')->name('user.index');
+    Route::get('/user/create', '\App\Http\Controllers\Admin\UserController@create')->name('user.create');
+    Route::post('/user/create', '\App\Http\Controllers\Admin\UserController@store')->name('user.store');
+    Route::get('/user/{user}', '\App\Http\Controllers\Admin\UserController@show')->name('user.show');
+    Route::get('/user/{user}/edit', '\App\Http\Controllers\Admin\UserController@edit')->name('user.edit');
+    Route::put('/user/{user}/edit', '\App\Http\Controllers\Admin\UserController@update')->name('user.update');
+    Route::delete('/user/{user}', '\App\Http\Controllers\Admin\UserController@destroy')->name('user.destroy');
+
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/blog', [\App\Http\Controllers\BlogPostController::class, 'index']);
-Route::get('/blog/{blogPost}', [\App\Http\Controllers\BlogPostController::class, 'show']);
-Route::get('/blog/create/post', [\App\Http\Controllers\BlogPostController::class, 'create']); //shows create post form
-Route::post('/blog/create/post', [\App\Http\Controllers\BlogPostController::class, 'store']); //saves the created post to the databse
-Route::get('/blog/{blogPost}/edit', [\App\Http\Controllers\BlogPostController::class, 'edit']); //shows edit post form
-Route::put('/blog/{blogPost}/edit', [\App\Http\Controllers\BlogPostController::class, 'update']); //commits edited post to the database
-Route::delete('/blog/{blogPost}', [\App\Http\Controllers\BlogPostController::class, 'destroy']); //deletes post from the database
+Route::get('/blog', '\App\Http\Controllers\BlogPostController@index')->name('blog.index');
+Route::get('/blog/{blogPost}', '\App\Http\Controllers\BlogPostController@show')->name('blog.show');
 
 require __DIR__.'/auth.php';

@@ -10,4 +10,14 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * Display admin welcome page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function welcome()
+    {
+        return view('welcome', []);
+    }
 }
