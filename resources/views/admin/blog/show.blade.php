@@ -7,18 +7,31 @@
     </x-slot>
 
     <div class="container">
-        <div class="row">
+        <div class="row m-2">
             <div class="col-12 pt-2">
-                <a href="{{ route('admin.blog.index') }}" class="btn btn-outline-primary btn-sm">Go back</a>
+                <div class="row m-2">
+                    <div class="col-12 text-end">
+                        <a href="{{ route('admin.blog.index') }}" class="btn btn-primary btn-sm">Go back</a>
+                    </div>
+                </div>
+
                 <p>{!! $post->body !!}</p>
+
                 <hr>
-                <a href="{{ route('admin.blog.edit', $post->id) }}" class="btn btn-outline-primary">Edit Post</a>
+
+                <div class="row m-2">
+                    <div class="col-12 text-end">
+                        <a href="{{ route('admin.blog.edit', $post->id) }}" class="btn btn-primary btn-sm">Edit Post</a>
+
+                        <form id="delete-frm" class="d-inline" action="" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger btn-sm">Delete Post</button>
+                        </form>
+                    </div>
+                </div>
+
                 <br><br>
-                <form id="delete-frm" class="" action="" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <button class="btn btn-danger">Delete Post</button>
-                </form>
             </div>
         </div>
     </div>

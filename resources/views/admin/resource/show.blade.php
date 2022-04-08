@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __(ucfirst($user->name)) }}
+            {{ __(ucfirst($resource->name)) }}
         </h2>
     </x-slot>
 
@@ -11,7 +11,7 @@
             <div class="col-12 pt-2">
                 <div class="row m-2">
                     <div class="col-12 text-end">
-                        <a href="{{ route('admin.user.index') }}" class="btn btn-primary btn-sm">Go back</a>
+                        <a href="{{ route('admin.resource.index') }}" class="btn btn-primary btn-sm">Go back</a>
                     </div>
                 </div>
 
@@ -19,38 +19,34 @@
                     <tbody>
                         <tr>
                             <th>id</th>
-                            <td>{{ $user->id }}</td>
+                            <td>{{ $resource->id }}</td>
                         </tr>
                         <tr>
                             <th>Name</th>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ $resource->name }}</td>
                         </tr>
                         <tr>
-                            <th>Email</th>
-                            <td>{{ $user->email }}</td>
-                        </tr>
-                        <tr>
-                            <th>Email Verified At</th>
-                            <td>{{ $user->email_verified_at }}</td>
+                            <th>Description</th>
+                            <td>{{ $resource->description }}</td>
                         </tr>
                         <tr>
                             <th>Created At</th>
-                            <td>{{ $user->created_at }}</td>
+                            <td>{{ $resource->created_at }}</td>
                         </tr>
                         <tr>
                             <th>Updated At</th>
-                            <td>{{ $user->updated_at }}</td>
+                            <td>{{ $resource->updated_at }}</td>
                         </tr>
                     </tbody>
                 </table>
 
-                
-                <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-outline-primary">Edit User</a>
+
+                <a href="{{ route('admin.resource.edit', $resource->id) }}" class="btn btn-outline-primary">Edit Resource</a>
                 <br><br>
                 <form id="delete-frm" class="" action="" method="POST">
                     @method('DELETE')
                     @csrf
-                    <button class="btn btn-danger">Delete User</button>
+                    <button class="btn btn-danger">Delete Resource</button>
                 </form>
             </div>
         </div>

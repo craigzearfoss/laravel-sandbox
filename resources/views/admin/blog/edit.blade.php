@@ -7,13 +7,19 @@
     </x-slot>
 
     <div class="container">
-        <div class="row">
+        <div class="row m-2">
             <div class="col-12 pt-2">
-                <a href="{{ route('admin.blog.index') }}" class="btn btn-outline-primary btn-sm">Go back</a>
-                <div class="border rounded mt-5 pl-4 pr-4 pt-4 pb-4">
-                    <p>Edit and submit this form to update a post</p>
 
-                    <hr>
+                <div class="row">
+                    <div class="col-8">
+                        Edit and submit this form to update a post.
+                    </div>
+                    <div class="col-4 text-end">
+                        <a href="{{ route('admin.blog.index') }}" class="btn btn-primary btn-sm">Go back</a>
+                    </div>
+                </div>
+
+                <div class="border rounded mt-1 p-2">
 
                     <form action="" method="POST">
                         @csrf
@@ -32,7 +38,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="control-group col-12 text-center">
-                                <button id="btn-submit" class="btn btn-primary">
+                                <button id="btn-submit" class="btn btn-primary btn-sm">
                                     Update Post
                                 </button>
                             </div>

@@ -2,43 +2,35 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create a New User') }}
+            {{ __('Edit Resource') }}
         </h2>
     </x-slot>
 
     <div class="container">
         <div class="row">
             <div class="col-12 pt-2">
-                <a href="{{ route('admin.user.index') }}" class="btn btn-outline-primary btn-sm">Go back</a>
+                <a href="{{ route('admin.resource.index') }}" class="btn btn-outline-primary btn-sm">Go back</a>
                 <div class="border rounded mt-5 pl-4 pr-4 pt-4 pb-4">
 
                     <form action="" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="control-group col-12">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" class="form-control" name="name"
-                                       placeholder="Enter User Name" required>
+                                       placeholder="Enter Resource Name" value="{{ $resource->name }}" required>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="control-group col-12 mt-2">
-                                <label for="email">Email</label>
-                                <input type="text" id="email" class="form-control" name="email"
-                                       placeholder="Enter User Email" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="control-group col-12 mt-2">
-                                <label for="password">Password</label>
-                                <input type="password" id="password" class="form-control" name="password"
-                                       placeholder="Password" required>
+                                <label for="description">Description</label>
+                                <textarea id="description" class="form-control" name="description"
+                                      placeholder="Enter Resource Description">{{ $resource->description }}</textarea>
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="control-group col-12 text-center">
                                 <button id="btn-submit" class="btn btn-primary">
-                                    Create User
+                                    Update Resource
                                 </button>
                             </div>
                         </div>

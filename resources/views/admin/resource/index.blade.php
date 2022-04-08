@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Users') }}
+            {{ __('Resource') }}
         </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
                     <div class="col-8">
                     </div>
                     <div class="col-4 text-end">
-                        <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-sm">Add a User</a>
+                        <a href="{{ route('admin.resource.create') }}" class="btn btn-primary btn-sm">Add a Resource</a>
                     </div>
                 </div>
 
@@ -25,24 +25,23 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Email Verified At</th>
+                                <th scope="col">Actions</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Actions</th>
                             </tr>
                             </thead>
 
                             <tbody>
 
-                            @forelse($users as $user)
+                            @forelse($resources as $resource)
 
                                 <tr>
-                                    <th scope="row">{{ $user->id }}</th>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->email_verified_at }}</td>
+                                    <th scope="row">{{ $resource->id }}</th>
+                                    <td>{{ $resource->name }}</td>
+                                    <td>{{ $resource->description }}</td>
                                     <td>
-                                        <a href="{{ route('admin.user.show', $user->id) }}" class="btn btn-primary btn-sm">View</a>
-                                        <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ route('admin.resource.show', $resource->id) }}" class="btn btn-primary btn-sm">View</a>
+                                        <a href="{{ route('admin.resource.edit', $resource->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                     </td>
                                 </tr>
 
@@ -50,7 +49,7 @@
 
                                 <tr>
                                     <td colspan="100%">
-                                        <p class="text-warning">No Users available.</p>
+                                        <p class="text-warning">No Resources available.</p>
                                     </td>
                                 </tr>
 
